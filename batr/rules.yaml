@@ -1,0 +1,97 @@
+agents:
+  finance_agent_1:
+    role: finance
+    allowed_tools:
+      - query_balance
+      - generate_report
+      - read_transaction_history
+      - validate_payment
+  finance_agent_2:
+    role: finance
+    allowed_tools:
+      - query_balance
+      - generate_report
+      - read_transaction_history
+      - validate_payment
+  finance_agent_3:
+    role: finance
+    allowed_tools:
+      - query_balance
+      - generate_report
+      - read_transaction_history
+      - validate_payment
+  support_agent_1:
+    role: support
+    allowed_tools:
+      - lookup_customer
+      - update_ticket
+      - send_notification
+      - read_knowledge_base
+  support_agent_2:
+    role: support
+    allowed_tools:
+      - lookup_customer
+      - update_ticket
+      - send_notification
+      - read_knowledge_base
+  support_agent_3:
+    role: support
+    allowed_tools:
+      - lookup_customer
+      - update_ticket
+      - send_notification
+      - read_knowledge_base
+  data_agent_1:
+    role: data_retrieval
+    allowed_tools:
+      - fetch_data
+      - run_query
+      - export_csv
+      - read_schema
+  data_agent_2:
+    role: data_retrieval
+    allowed_tools:
+      - fetch_data
+      - run_query
+      - export_csv
+      - read_schema
+  data_agent_3:
+    role: data_retrieval
+    allowed_tools:
+      - fetch_data
+      - run_query
+      - export_csv
+      - read_schema
+
+tool_risk:
+  high_risk:
+    - transfer_funds
+    - delete_record
+    - send_external_email
+
+baseline:
+  z_threshold: 3.0
+  baseline_window_events: 50
+
+correlation:
+  window_seconds: 300
+
+severity_weights:
+  scope_violation: 4
+  missing_approval: 4
+  origin_mismatch: 4
+  baseline_deviation: 2
+
+severity_levels:
+  LOW:
+    min: 1
+    max: 3
+  MEDIUM:
+    min: 4
+    max: 5
+  HIGH:
+    min: 6
+    max: 7
+  CRITICAL:
+    min: 8
+    max: 9999
