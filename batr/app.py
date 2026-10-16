@@ -3,6 +3,15 @@ app.py – BATR Streamlit Dashboard
 """
 from __future__ import annotations
 
+import os
+import sys
+
+# Ensure the repo root is on sys.path so `batr.*` imports resolve on
+# Streamlit Cloud (which adds the file's directory, not the repo root).
+_repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+if _repo_root not in sys.path:
+    sys.path.insert(0, _repo_root)
+
 from typing import Dict, List
 
 import pandas as pd
@@ -182,7 +191,8 @@ with st.sidebar:
 
         with st.spinner("Correlating incidents"):
             import pathlib, uuid as _uuid, yaml
-            _rules = yaml.safe_load(pathlib.Path("batr/rules.yaml").read_text())
+            _rules_path = pathlib.Path(__file__).parent / "rules.yaml"
+            _rules = yaml.safe_load(_rules_path.read_text())
             _rules["correlation"]["window_seconds"] = window_sec
 
             def _correlate_patched(flags, rules):
